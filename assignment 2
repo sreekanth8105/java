@@ -1,0 +1,226 @@
+1)Write java code for creating 3 methods called even, odd and 
+prime in parent class and override them from child class. The 
+parent class should print 1 to 20 range in all method, but child 
+print 1 to 30 array range in all methods. And access all the 
+methods using derived class object
+
+class Parent {
+    void even() {
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    void odd() {
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    void prime() {
+        for (int i = 1; i <= 20; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void even() {
+        for (int i = 1; i <= 30; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    @Override
+    void odd() {
+        for (int i = 1; i <= 30; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    @Override
+    void prime() {
+        for (int i = 1; i <= 30; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.even();
+        child.odd();
+        child.prime();
+    }
+}
+
+
+2)Override a default constructor, which contains a=10,b=15 in java 
+using parametrized constructor which contains a=20,b=25. Create 
+a method called disp(). And call both the constructors associating 
+it with disp()
+
+
+class ConstructorExample {
+    int a, b;
+
+    ConstructorExample() {
+        a = 10;
+        b = 15;
+    }
+
+    ConstructorExample(int x, int y) {
+        a = x;
+        b = y;
+    }
+
+    void disp() {
+        System.out.println("a: " + a + ", b: " + b);
+    }
+
+    public static void main(String[] args) {
+        ConstructorExample obj1 = new ConstructorExample();
+        obj1.disp();
+
+        ConstructorExample obj2 = new ConstructorExample(20, 25);
+        obj2.disp();
+    }
+}
+
+
+3) Java program to create a Base class with a method called ‘void 
+area(int a, int b)’ which print area of a square. Now override the 
+method from Derived class and make it print area of a rectangle.
+
+
+class Base {
+    public void area(int a, int b) {
+        System.out.println("Area of a square: " + (a * a));
+    }
+}
+
+class Derived extends Base {
+    @Override
+    public void area(int a, int b) {
+        System.out.println("Area of a rectangle: " + (a * b));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Derived derived = new Derived();
+        derived.area(4, 5);
+    }
+}
+
+
+4)Write java code to overload a method called ‘int sum(int a, int b)’
+by the 3 ways.
+a) By increasing and decreasing no. of parameters
+b) By changing the data types of parameters
+
+
+
+public class MethodOverloadingExample {
+
+    
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    public int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    
+    public double sum(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        MethodOverloadingExample example = new MethodOverloadingExample();
+
+        System.out.println("Sum of two numbers: " + example.sum(5, 10));
+        System.out.println("Sum of three numbers: " + example.sum(5, 10, 15));
+        System.out.println("Sum of two double numbers: " + example.sum(2.5, 3.5));
+    }
+}
+
+
+
+
+5)Create an interface called Tree and extend 2 classes from it called 
+Branch1 and Branch2. Tree should contain methods fruits(), 
+leaves() and flowers(), these methods contain 2,3,4 parameters respectively
+
+interface Tree {
+    void fruits(int param1, int param2);
+    void leaves(int param1, int param2, int param3);
+    void flowers(int param1, int param2, int param3, int param4);
+}
+
+class Branch1 implements Tree {
+    @Override
+    public void fruits(int param1, int param2) {
+       
+    }
+
+    @Override
+    public void leaves(int param1, int param2, int param3) {
+       
+    }
+
+    @Override
+    public void flowers(int param1, int param2, int param3, int param4) {
+        
+    }
+}
+
+class Branch2 implements Tree {
+    @Override
+    public void fruits(int param1, int param2) {
+         
+    }
+
+    @Override
+    public void leaves(int param1, int param2, int param3) {
+       
+    }
+
+    @Override
+    public void flowers(int param1, int param2, int param3, int param4) {
+        
+    }
+}
