@@ -1,0 +1,182 @@
+1.To withdraw an amount after checking balance(Minimum balance must be Rs.500.00
+Note : Assume that balance amount = 10000
+Test Cases
+1.100, Raja, S, 8000
+2.Raja, 100, S, 9000
+3.101, Rani, S, 12000
+4.102, Ragu, W, 8000
+5.103, Ravi, C, 10000
+
+public class BankAccount {
+    private String accountNumber;
+    private String holderName;
+    private char accountType;
+    private double balance;
+
+    public BankAccount(String accountNumber, String holderName, char accountType, double balance) {
+        this.accountNumber = accountNumber;
+        this.holderName = holderName;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+
+    public void withdraw(double amount) {
+        if (balance - amount >= 500.00) {
+            balance -= amount;
+            System.out.println("Withdrawal of Rs." + amount + " successful. Remaining balance: Rs." + balance);
+        } else {
+            System.out.println("Withdrawal failed. Minimum balance of Rs.500.00 must be maintained.");
+        }
+    }
+
+    public static void main(String[] args) {
+        BankAccount account1 = new BankAccount("100", "Raja", 'S', 8000);
+        BankAccount account2 = new BankAccount("101", "Rani", 'S', 12000);
+        BankAccount account3 = new BankAccount("102", "Ragu", 'W', 8000);
+        BankAccount account4 = new BankAccount("103", "Ravi", 'C', 10000);
+
+        account1.withdraw(1000);
+        account2.withdraw(2000);
+        account3.withdraw(500);
+        account4.withdraw(200);
+    }
+}
+
+2.public class PalindromeGenerator {
+    public static void main(String[] args) {
+        long inputNumber = 7325;
+        long reverseNumber = 0;
+        long tempNumber = inputNumber;
+        
+        while (true) {
+            long remainder = 0;
+            while (tempNumber > 0) {
+                remainder = tempNumber % 10;
+                reverseNumber = reverseNumber * 10 + remainder;
+                tempNumber = tempNumber / 10;
+            }
+            
+            long sum = inputNumber + reverseNumber;
+            System.out.println(inputNumber + " + " + reverseNumber + " = " + sum);
+            
+            if (isPalindrome(sum)) {
+                System.out.println(sum + " (Palindrome)");
+                break;
+            } else {
+                inputNumber = sum;
+                reverseNumber = 0;
+                tempNumber = sum;
+            }
+        }
+    }
+    
+    public static boolean isPalindrome(long number) {
+        long originalNumber = number;
+        long reverse = 0;
+        
+        while (number != 0) {
+            long remainder = number % 10;
+            reverse = reverse * 10 + remainder;
+            number = number / 10;
+        }
+        
+        return originalNumber == reverse;
+    }
+}
+
+3.class Customer {
+    private int AccountNo = 12345;
+    private String AccName = "John Doe";
+    private int Balance = 10000;
+
+    public synchronized void deposit(int amount) {
+        System.out.println("Depositing: " + amount);
+        Balance += amount;
+        System.out.println("New Balance after deposit: " + Balance);
+        notify();
+    }
+
+    public synchronized void withdraw(int amount) {
+        System.out.println("Withdrawing: " + amount);
+        if (Balance < amount) {
+            try {
+                System.out.println("Insufficient Balance. Waiting for deposit...");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Balance -= amount;
+        System.out.println("Withdraw operation success. New Balance: " + Balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer();
+
+        new Thread(() -> {
+            customer.withdraw(12000);
+        }).start();
+
+        new Thread(() -> {
+            customer.deposit(3000);
+        }).start();
+    }
+}
+
+4.class Customer {
+    private int AccountNo = 12345;
+    private String AccName = "John Doe";
+    private int Balance = 10000;
+
+    public synchronized void deposit(int amount) {
+        System.out.println("Depositing: " + amount);
+        Balance += amount;
+        System.out.println("New Balance after deposit: " + Balance);
+        notify();
+    }
+
+    public synchronized void withdraw(int amount) {
+        System.out.println("Withdrawing: " + amount);
+        if (Balance < amount) {
+            try {
+                System.out.println("Insufficient Balance. Waiting for deposit...");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Balance -= amount;
+        System.out.println("Withdraw operation success. New Balance: " + Balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer();
+
+        new Thread(() -> {
+            customer.withdraw(12000);
+        }).start();
+
+        new Thread(() -> {
+            customer.deposit(3000);
+        }).start();
+    }
+}
+
+5.public class LastWordLength {
+    public int lengthOfLastWord(String s) {
+        String[] words = s.split(" ");
+        return words[words.length - 1].length();
+    }
+
+    public static void main(String[] args) {
+        LastWordLength solution = new LastWordLength();
+        String input = "Hello World";
+        int output = solution.lengthOfLastWord(input);
+        System.out.println("Output: " + output);
+    }
+}
+
